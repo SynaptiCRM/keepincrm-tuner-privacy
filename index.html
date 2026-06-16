@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Політика конфіденційності — KeepinCRM Smart UI Styler</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #1e293b; }
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.1rem; margin-top: 1.5rem; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+    th, td { border: 1px solid #cbd5e1; padding: 0.5rem; text-align: left; vertical-align: top; }
+    th { background: #f1f5f9; }
+    .muted { color: #64748b; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>Політика конфіденційності</h1>
+  <p><strong>KeepinCRM Smart UI Styler</strong> (Chrome Extension)</p>
+  <p class="muted">Останнє оновлення: 16 червня 2026</p>
+
+  <h2>1. Оператор даних</h2>
+  <p>
+    Оператором персональних даних є <strong>JustLabs</strong>.
+    Юридична адреса: м. Трускавець, вул. Роксолани 16, Львівська область, 82200, Україна.
+    Контакт для звернень щодо даних: <strong>draboleg233@gmail.com</strong>.
+  </p>
+
+  <h2>2. Призначення розширення</h2>
+  <p>
+    Розширення кастомізує інтерфейс карток KeepinCRM на доменах <code>*.keepincrm.com</code>:
+    угоди, клієнти, задачі. Для корпоративних користувачів потрібна авторизація через сервер JustSchool.
+  </p>
+
+  <h2>3. Які дані збираються</h2>
+  <table>
+    <thead>
+      <tr><th>Дані</th><th>Джерело</th><th>Мета</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Email, пароль</td>
+        <td>Форма входу/реєстрації в popup</td>
+        <td>Авторизація користувача</td>
+      </tr>
+      <tr>
+        <td>ПІБ, KeepinCRM Manager ID</td>
+        <td>Форма реєстрації</td>
+        <td>Прив'язка акаунту до менеджера CRM</td>
+      </tr>
+      <tr>
+        <td>JWT-токен сесії</td>
+        <td>Відповідь сервера після входу</td>
+        <td>Зберігається локально в браузері; використовується для API та WebSocket</td>
+      </tr>
+      <tr>
+        <td>URL вкладки KeepinCRM</td>
+        <td>Heartbeat (~кожні 20 с), лише якщо активна вкладка на <code>*.keepincrm.com</code></td>
+        <td>Моніторинг активності в CRM, підтримка realtime-сценаріїв</td>
+      </tr>
+      <tr>
+        <td>URL відкритої вкладки KeepinCRM</td>
+        <td>Heartbeat</td>
+        <td>Визначення поточного контексту роботи в CRM</td>
+      </tr>
+      <tr>
+        <td>Версія розширення, статус WS, стан тюнера</td>
+        <td>Heartbeat, telemetry</td>
+        <td>Діагностика, оновлення, підтримка</td>
+      </tr>
+      <tr>
+        <td>Події встановлення/оновлення/запуску браузера</td>
+        <td>Telemetry (лише для авторизованих)</td>
+        <td>Операційна аналітика</td>
+      </tr>
+      <tr>
+        <td>Шаблони карток, налаштування UI</td>
+        <td>Локальне сховище Chrome (<code>storage.sync</code>, <code>storage.local</code>)</td>
+        <td>Збереження персоналізації інтерфейсу</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    Розширення <strong>не збирає URL</strong> сайтів поза <code>*.keepincrm.com</code> у полі активної вкладки.
+  </p>
+
+  <h2>4. Куди передаються дані</h2>
+  <p>
+    Дані авторизації, heartbeat та telemetry передаються на сервери JustSchool:
+  </p>
+  <ul>
+    <li><code>https://webhooks.justschool.com.ua/webhook/v1/keepintuner</code> (HTTPS)</li>
+    <li><code>wss://webhooks.justschool.com.ua/justhook/v1/platform/keepintuner/ws</code> (WSS) — realtime-події, наприклад відкриття угоди</li>
+  </ul>
+  <p>Дані не продаються третім сторонам і не використовуються для реклами.</p>
+
+  <h2>5. Шифрування та зберігання</h2>
+  <ul>
+    <li>Передача персональних даних — лише через HTTPS/WSS.</li>
+    <li>JWT та налаштування зберігаються локально в профілі Chrome користувача.</li>
+    <li>Терміни зберігання на сервері визначаються внутрішньою політикою JustSchool; за запитом користувача акаунт може бути видалений.</li>
+  </ul>
+
+  <h2>6. Режим Incognito</h2>
+  <p>
+    Розширення використовує режим <code>incognito: spanning</code>: стан авторизації та налаштування
+    спільні між звичайним та приватним вікном браузера в межах одного профілю Chrome.
+  </p>
+
+  <h2>7. Права користувача</h2>
+  <p>Ви можете:</p>
+  <ul>
+    <li>Вийти з акаунту в popup розширення (видаляє локальний JWT).</li>
+    <li>Видалити розширення — локальні дані будуть видалені разом із ним.</li>
+    <li>Звернутися на <strong>draboleg233@gmail.com</strong> щодо видалення серверних даних акаунту.</li>
+  </ul>
+
+  <h2>8. Зміни політики</h2>
+  <p>
+    Актуальна версія політики публікується за цією адресою. Про суттєві зміни користувачі можуть бути
+    повідомлені через оновлення розширення або корпоративні канали JustLabs.
+  </p>
+
+  <hr />
+  <p class="muted">English summary: This extension customizes KeepinCRM UI. It collects account credentials, session tokens, KeepinCRM tab URLs (only on keepincrm.com), and usage telemetry sent to backend servers over HTTPS/WSS. Data is not sold. Contact draboleg233@gmail.com for account deletion.</p>
+</body>
+</html>
