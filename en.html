@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy — KeepinCRM Smart UI Styler</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #1e293b; }
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.1rem; margin-top: 1.5rem; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+    th, td { border: 1px solid #cbd5e1; padding: 0.5rem; text-align: left; vertical-align: top; }
+    th { background: #f1f5f9; }
+    .muted { color: #64748b; font-size: 0.9rem; }
+    .lang { text-align: right; margin-bottom: 1rem; font-size: 0.9rem; }
+    code { font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <p class="lang"><a href="index.html">Українська</a></p>
+
+  <h1>Privacy Policy</h1>
+  <p><strong>KeepinCRM Smart UI Styler</strong> (Chrome Extension)</p>
+  <p class="muted">Last updated: June 18, 2026 · extension v4.19.4</p>
+
+  <h2>1. Data Controller</h2>
+  <p>
+    The data controller is <strong>JustLabs</strong>.
+    Registered address: 16 Roksolany St., Truskavets, Lviv Oblast, 82200, Ukraine.
+    Privacy contact: <strong>draboleg233@gmail.com</strong>.
+  </p>
+
+  <h2>2. Purpose of the Extension</h2>
+  <p>
+    This extension customizes the KeepinCRM card interface on <code>*.keepincrm.com</code> domains
+    (deals, clients, tasks). Corporate users authenticate through the JustSchool backend
+    to enable personalized UI templates and real-time features.
+  </p>
+
+  <h2>3. Data We Collect</h2>
+  <table>
+    <thead>
+      <tr><th>Data</th><th>Source</th><th>Purpose</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Email address</td>
+        <td>Sign-in / sign-up form in the extension popup</td>
+        <td>User authentication and account identification</td>
+      </tr>
+      <tr>
+        <td>Password</td>
+        <td>Sign-in form in the extension popup</td>
+        <td>Authentication (transmitted to the backend over HTTPS; not stored locally in plain text)</td>
+      </tr>
+      <tr>
+        <td>KeepinCRM Manager ID</td>
+        <td>Registration form and authenticated session</td>
+        <td>Linking the extension account to the correct CRM manager profile</td>
+      </tr>
+      <tr>
+        <td>Full name (optional)</td>
+        <td>Registration form</td>
+        <td>Account setup and support</td>
+      </tr>
+      <tr>
+        <td>Session JWT token</td>
+        <td>Server response after successful login</td>
+        <td>Stored locally in the browser; used for API calls and WebSocket connection</td>
+      </tr>
+      <tr>
+        <td>KeepinCRM tab URLs</td>
+        <td>Periodic heartbeat (~every 20 s) when a <code>*.keepincrm.com</code> tab is open</td>
+        <td>Activity monitoring in CRM, real-time context (e.g. open-deal events), UI sync</td>
+      </tr>
+      <tr>
+        <td>Active tab URL (KeepinCRM only)</td>
+        <td>Heartbeat</td>
+        <td>Determining the user&rsquo;s current CRM context; non-KeepinCRM URLs are not collected</td>
+      </tr>
+      <tr>
+        <td>Extension version, WebSocket status, tuner state</td>
+        <td>Heartbeat and telemetry</td>
+        <td>Diagnostics, updates, and support</td>
+      </tr>
+      <tr>
+        <td>Install, update, and browser-start events</td>
+        <td>Telemetry (authenticated users only)</td>
+        <td>Operational analytics for corporate deployment</td>
+      </tr>
+      <tr>
+        <td>Card templates and UI settings</td>
+        <td>Chrome local storage (<code>storage.sync</code>, <code>storage.local</code>)</td>
+        <td>Persisting interface personalization on the device</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    The extension <strong>does not collect URLs</strong> of websites outside <code>*.keepincrm.com</code>
+    in the active-tab field of heartbeat payloads.
+  </p>
+
+  <h2>4. Where Data Is Sent</h2>
+  <p>
+    Authentication, heartbeat, and telemetry data are transmitted exclusively to the JustSchool corporate backend
+    to operate the UI tuner. Endpoints:
+  </p>
+  <ul>
+    <li><code>https://webhooks.justschool.com.ua/webhook/v1/keepintuner</code> (HTTPS)</li>
+    <li><code>wss://webhooks.justschool.com.ua/justhook/v1/platform/keepintuner/ws</code> (WSS) &mdash; real-time events such as opening a deal</li>
+  </ul>
+  <p>
+    Data is used solely to provide extension functionality. It is <strong>not sold</strong> to third parties
+    and is <strong>not used for advertising</strong>.
+  </p>
+
+  <h2>5. Security and Retention</h2>
+  <ul>
+    <li>Personal data in transit is encrypted via HTTPS and WSS.</li>
+    <li>JWT tokens and UI settings are stored locally in the user&rsquo;s Chrome profile.</li>
+    <li>Server-side retention follows JustSchool internal policy; account data can be deleted on request.</li>
+  </ul>
+
+  <h2>6. Incognito Mode</h2>
+  <p>
+    The extension uses <code>incognito: spanning</code>. Authentication state and UI settings are shared
+    between regular and Incognito windows within the same Chrome profile, so the tuner works consistently
+    in both modes.
+  </p>
+
+  <h2>7. Your Rights</h2>
+  <p>You may:</p>
+  <ul>
+    <li>Sign out in the extension popup (removes the local JWT).</li>
+    <li>Uninstall the extension (removes local extension data).</li>
+    <li>Contact <strong>draboleg233@gmail.com</strong> to request deletion of server-side account data.</li>
+  </ul>
+
+  <h2>8. Policy Updates</h2>
+  <p>
+    The current version of this policy is published at this URL. Material changes may be communicated
+    through extension updates or JustLabs corporate channels.
+  </p>
+</body>
+</html>

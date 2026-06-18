@@ -5,19 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Політика конфіденційності — KeepinCRM Smart UI Styler</title>
   <style>
-    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #1e293b; }
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #1e293b; }
     h1 { font-size: 1.5rem; }
     h2 { font-size: 1.1rem; margin-top: 1.5rem; }
     table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
     th, td { border: 1px solid #cbd5e1; padding: 0.5rem; text-align: left; vertical-align: top; }
     th { background: #f1f5f9; }
     .muted { color: #64748b; font-size: 0.9rem; }
+    .lang { text-align: right; margin-bottom: 1rem; font-size: 0.9rem; }
+    code { font-size: 0.9em; }
   </style>
 </head>
 <body>
+  <p class="lang"><a href="en.html">English</a></p>
+
   <h1>Політика конфіденційності</h1>
   <p><strong>KeepinCRM Smart UI Styler</strong> (Chrome Extension)</p>
-  <p class="muted">Останнє оновлення: 16 червня 2026</p>
+  <p class="muted">Останнє оновлення: 18 червня 2026 · розширення v4.19.4</p>
 
   <h2>1. Оператор даних</h2>
   <p>
@@ -86,7 +90,8 @@
 
   <h2>4. Куди передаються дані</h2>
   <p>
-    Дані авторизації, heartbeat та telemetry передаються на сервери JustSchool:
+    Дані авторизації, heartbeat та telemetry передаються <strong>виключно</strong> на корпоративний сервер JustSchool
+    для забезпечення роботи UI-тюнера:
   </p>
   <ul>
     <li><code>https://webhooks.justschool.com.ua/webhook/v1/keepintuner</code> (HTTPS)</li>
@@ -120,8 +125,5 @@
     Актуальна версія політики публікується за цією адресою. Про суттєві зміни користувачі можуть бути
     повідомлені через оновлення розширення або корпоративні канали JustLabs.
   </p>
-
-  <hr />
-  <p class="muted">English summary: This extension customizes KeepinCRM UI. It collects account credentials, session tokens, KeepinCRM tab URLs (only on keepincrm.com), and usage telemetry sent to backend servers over HTTPS/WSS. Data is not sold. Contact draboleg233@gmail.com for account deletion.</p>
 </body>
 </html>
