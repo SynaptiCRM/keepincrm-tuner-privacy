@@ -24,7 +24,7 @@
 
   <h1>Privacy Policy</h1>
   <p><strong>KeepinCRM Smart UI Styler</strong> (Chrome Extension)</p>
-  <p class="muted">Last updated: June 18, 2026 · extension v4.19.4</p>
+  <p class="muted">Last updated: June 27, 2026 · extension v4.20.0</p>
 
   <h2>1. Data Controller</h2>
   <p>
@@ -37,8 +37,11 @@
   <h2>2. Purpose of the Extension</h2>
   <p>
     This extension customizes the KeepinCRM card interface on <code>*.keepincrm.com</code> domains
-    (deals, clients, tasks). Corporate users authenticate through the JustSchool backend
-    to enable personalized UI templates and real-time features.
+    (deals, clients, tasks). Corporate employees authenticate through
+    <strong>Sign in with Slack</strong> (the <strong>JustTech</strong> workspace) &mdash; a secure OAuth2 flow
+    using the Chrome <code>identity</code> permission. This verifies membership in the company workspace
+    and grants authorized staff access to closed CRM customization features.
+    The extension <strong>does not collect passwords</strong> and has no password-based sign-up forms.
   </p>
 
   <h2>3. Data We Collect</h2>
@@ -49,23 +52,28 @@
     <tbody>
       <tr>
         <td>Email address</td>
-        <td>Sign-in / sign-up form in the extension popup</td>
+        <td>Slack OAuth (Sign in with Slack)</td>
         <td>User authentication and account identification</td>
       </tr>
       <tr>
-        <td>Password</td>
-        <td>Sign-in form in the extension popup</td>
-        <td>Authentication (transmitted to the backend over HTTPS; not stored locally in plain text)</td>
+        <td>Full name</td>
+        <td>Slack OAuth profile</td>
+        <td>Account display and admin monitoring</td>
+      </tr>
+      <tr>
+        <td>Slack user ID</td>
+        <td>Slack OAuth</td>
+        <td>Linking the extension account to a JustTech workspace member</td>
       </tr>
       <tr>
         <td>KeepinCRM Manager ID</td>
-        <td>Registration form and authenticated session</td>
+        <td>Admin panel / optional manual assignment</td>
         <td>Linking the extension account to the correct CRM manager profile</td>
       </tr>
       <tr>
-        <td>Full name (optional)</td>
-        <td>Registration form</td>
-        <td>Account setup and support</td>
+        <td>OAuth authorization code</td>
+        <td>OAuth2 flow result (<code>chrome.identity</code>)</td>
+        <td>One-time exchange for a session via the corporate backend; not stored locally</td>
       </tr>
       <tr>
         <td>Session JWT token</td>
@@ -106,21 +114,23 @@
 
   <h2>4. Where Data Is Sent</h2>
   <p>
-    Authentication, heartbeat, and telemetry data are transmitted exclusively to the JustSchool corporate backend
-    to operate the UI tuner. Endpoints:
+    Authentication, heartbeat, and telemetry data are transmitted solely to operate the UI tuner:
   </p>
   <ul>
-    <li><code>https://webhooks.justschool.com.ua/webhook/v1/keepintuner</code> (HTTPS)</li>
+    <li><code>https://slack.com</code> &mdash; OAuth2 authorization during Sign in with Slack (the user authenticates directly with Slack; the extension receives only an authorization code)</li>
+    <li><code>https://webhooks.justschool.com.ua/webhook/v1/keepintuner</code> (HTTPS) &mdash; OAuth code exchange, heartbeat, telemetry</li>
     <li><code>wss://webhooks.justschool.com.ua/justhook/v1/platform/keepintuner/ws</code> (WSS) &mdash; real-time events such as opening a deal</li>
   </ul>
   <p>
     Data is used solely to provide extension functionality. It is <strong>not sold</strong> to third parties
     and is <strong>not used for advertising</strong>.
+    Slack privacy policy: <a href="https://slack.com/trust/privacy/privacy-policy">slack.com/trust/privacy/privacy-policy</a>.
   </p>
 
   <h2>5. Security and Retention</h2>
   <ul>
     <li>Personal data in transit is encrypted via HTTPS and WSS.</li>
+    <li>OAuth2 runs through <code>chrome.identity.launchWebAuthFlow</code>; passwords are not stored in the extension.</li>
     <li>JWT tokens and UI settings are stored locally in the user&rsquo;s Chrome profile.</li>
     <li>Server-side retention follows JustSchool internal policy; account data can be deleted on request.</li>
   </ul>
