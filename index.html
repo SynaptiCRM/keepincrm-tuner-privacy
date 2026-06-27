@@ -24,7 +24,7 @@
 
   <h1>Політика конфіденційності</h1>
   <p><strong>KeepinCRM Smart UI Styler</strong> (Chrome Extension)</p>
-  <p class="muted">Останнє оновлення: 18 червня 2026 · розширення v4.19.4</p>
+  <p class="muted">Останнє оновлення: 27 червня 2026 · розширення v4.20.0</p>
 
   <h2>1. Оператор даних</h2>
   <p>
@@ -37,7 +37,11 @@
   <h2>2. Призначення розширення</h2>
   <p>
     Розширення кастомізує інтерфейс карток KeepinCRM на доменах <code>*.keepincrm.com</code>:
-    угоди, клієнти, задачі. Для корпоративних користувачів потрібна авторизація через сервер JustSchool.
+    угоди, клієнти, задачі. Корпоративні співробітники авторизуються через
+    <strong>Sign in with Slack</strong> (робочий простір <strong>JustTech</strong>) — безпечний OAuth2-потік
+    через дозвіл Chrome <code>identity</code>. Це підтверджує належність користувача до робочого простору
+    компанії та надає авторизованим працівникам доступ до закритого функціоналу кастомізації CRM.
+    Розширення <strong>не збирає паролі</strong> і не має форм реєстрації з паролем.
   </p>
 
   <h2>3. Які дані збираються</h2>
@@ -47,18 +51,33 @@
     </thead>
     <tbody>
       <tr>
-        <td>Email, пароль</td>
-        <td>Форма входу/реєстрації в popup</td>
-        <td>Авторизація користувача</td>
+        <td>Email</td>
+        <td>Slack OAuth (Sign in with Slack)</td>
+        <td>Авторизація та ідентифікація акаунту</td>
       </tr>
       <tr>
-        <td>ПІБ, KeepinCRM Manager ID</td>
-        <td>Форма реєстрації</td>
-        <td>Прив'язка акаунту до менеджера CRM</td>
+        <td>ПІБ</td>
+        <td>Профіль Slack OAuth</td>
+        <td>Відображення акаунту та адміністративний моніторинг</td>
+      </tr>
+      <tr>
+        <td>Slack user ID</td>
+        <td>Slack OAuth</td>
+        <td>Прив&rsquo;язка акаунту розширення до учасника робочого простору JustTech</td>
+      </tr>
+      <tr>
+        <td>KeepinCRM Manager ID</td>
+        <td>Адмін-панель / опційне ручне призначення</td>
+        <td>Прив&rsquo;язка акаунту до профілю менеджера в CRM</td>
+      </tr>
+      <tr>
+        <td>OAuth authorization code</td>
+        <td>Результат OAuth2-потоку (<code>chrome.identity</code>)</td>
+        <td>Одноразовий обмін на сесію через корпоративний бекенд; не зберігається локально</td>
       </tr>
       <tr>
         <td>JWT-токен сесії</td>
-        <td>Відповідь сервера після входу</td>
+        <td>Відповідь сервера після успішного входу</td>
         <td>Зберігається локально в браузері; використовується для API та WebSocket</td>
       </tr>
       <tr>
@@ -94,18 +113,22 @@
 
   <h2>4. Куди передаються дані</h2>
   <p>
-    Дані авторизації, heartbeat та telemetry передаються <strong>виключно</strong> на корпоративний сервер JustSchool
-    для забезпечення роботи UI-тюнера:
+    Дані авторизації, heartbeat та telemetry передаються <strong>виключно</strong> для забезпечення роботи UI-тюнера:
   </p>
   <ul>
-    <li><code>https://webhooks.justschool.com.ua/webhook/v1/keepintuner</code> (HTTPS)</li>
+    <li><code>https://slack.com</code> — OAuth2-авторизація під час входу через Slack (користувач автентифікується безпосередньо в Slack; розширення отримує лише authorization code)</li>
+    <li><code>https://webhooks.justschool.com.ua/webhook/v1/keepintuner</code> (HTTPS) — обмін OAuth code на сесію, heartbeat, telemetry</li>
     <li><code>wss://webhooks.justschool.com.ua/justhook/v1/platform/keepintuner/ws</code> (WSS) — realtime-події, наприклад відкриття угоди</li>
   </ul>
-  <p>Дані не продаються третім сторонам і не використовуються для реклами.</p>
+  <p>
+    Дані не продаються третім сторонам і не використовуються для реклами.
+    Політика конфіденційності Slack: <a href="https://slack.com/trust/privacy/privacy-policy">slack.com/trust/privacy/privacy-policy</a>.
+  </p>
 
   <h2>5. Шифрування та зберігання</h2>
   <ul>
     <li>Передача персональних даних — лише через HTTPS/WSS.</li>
+    <li>OAuth2-потік виконується через <code>chrome.identity.launchWebAuthFlow</code>; паролі не зберігаються в розширенні.</li>
     <li>JWT та налаштування зберігаються локально в профілі Chrome користувача.</li>
     <li>Терміни зберігання на сервері визначаються внутрішньою політикою JustSchool; за запитом користувача акаунт може бути видалений.</li>
   </ul>
